@@ -1,6 +1,6 @@
 package org.joseph.algorithm.list;
 
-import org.joseph.algorithm.common.Node;
+import org.joseph.algorithm.common.ListNode;
 
 
 /**
@@ -11,38 +11,38 @@ public class Reverse {
     /**
      * 递归方案
      */
-    public Node solution(Node head) {
-        if (null == head || null == head.next) {
+    public ListNode solution(ListNode head) {
+        if (null == head || null == head.getNext()) {
             return head;
         }
 
-        Node newHead = solution(head.next);
-        head.next.next = head;
-        head.next = null;
+        ListNode newHead = solution(head.getNext());
+        head.getNext().setNext(head);
+        head.setNext(null);
         return newHead;
     }
 
     /**
      * 迭代方案
      */
-    public Node solution1(Node head) {
-        if (null == head || null == head.next) {
+    public ListNode solution1(ListNode head) {
+        if (null == head || null == head.getNext()) {
             return head;
         }
 
-        Node curNode = head.next;
-        Node preNode = head;
-        Node tmpNode;
+        ListNode curNode = head.getNext();
+        ListNode preNode = head;
+        ListNode tmpNode = null;
 
         while (true) {
             if(null == curNode) break;
 
-            tmpNode = curNode.next;
-            curNode.next = preNode;
+            tmpNode = curNode.getNext();
+            curNode.setNext(preNode);
             preNode = curNode;
             curNode = tmpNode;
         }
-        head.next = null;
+        head.setNext(null);
         return preNode;
     }
 
