@@ -181,6 +181,11 @@ public class LinkMath {
 
     /**
      * 探测两个链表是否相交，相交返回交点，否则返回null
+     * 思路：
+     *      1、判断两链表是否都是无环的，若是，则判断末尾节点是否相同，相同则相交。然后找到长度相同的起始点，往后遍历，第一个相同节点则是交点
+     *      2、若A/B有环，则交点要么在环外，要不在环上。环外时，采用第1种方法判断；环上时，则交点分别为环的入口节点，问题变成分别找到A和B链表的环入口节点。
+     *
+     *      第1中情况的另外一种思路：将A末尾节点与B的首节点相连，判断A链表是否有环，有环说明A、B相交，环的入口节点即为交点。
      */
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
         if(headA == null || headB == null) return null;
