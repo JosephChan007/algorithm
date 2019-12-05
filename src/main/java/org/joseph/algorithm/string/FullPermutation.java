@@ -18,16 +18,16 @@ public class FullPermutation {
         array[j] = temp;
     }
 
-    public void doPermutation(char[] array, int left, int right) {
-        if(left > right) return;
+    public void doPermutation(char[] array, int start, int end) {
+        if(start > end) return;
 
-        if (left == right) {
+        if (start == end) {
             result.add(Arrays.toString(array));
         } else {
-            for (int i = left; i <= right; i++) {
-                swap(array, i, left);
-                doPermutation(array, left + 1, right);
-                swap(array, left, i);
+            for (int i = start; i <= end; i++) {
+                swap(array, i, start);
+                doPermutation(array, start + 1, end);
+                swap(array, start, i);
             }
         }
     }
