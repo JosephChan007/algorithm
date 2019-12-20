@@ -22,7 +22,6 @@ public class QuickSort {
             while (left < right && list.get(right) >= base) {
                 right--;
             }
-
             swap(list, index, right);
             index = right;
 
