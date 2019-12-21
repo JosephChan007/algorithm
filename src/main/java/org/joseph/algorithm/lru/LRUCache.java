@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * LRU缓存算法
  *      map：保存数据
- *      Node：保存访问先后次序
+ *      Node：双向链表保存访问先后次序
  */
 public class LRUCache {
 
