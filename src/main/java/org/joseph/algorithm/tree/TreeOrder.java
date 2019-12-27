@@ -3,6 +3,7 @@ package org.joseph.algorithm.tree;
 import org.joseph.algorithm.common.TreeNode;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 
@@ -40,6 +41,27 @@ public class TreeOrder {
         if(null != node) result.add(node);
     }
 
+
+    /**
+     * 层序遍历
+     */
+    public void levelorder(TreeNode node){
+        if(null != node){
+            LinkedList<TreeNode> list = new LinkedList<TreeNode>();
+            list.add(node);
+            TreeNode currentNode;
+            while (!list.isEmpty()){
+                currentNode = list.poll();
+                System.out.print(currentNode.val);
+                if(null != currentNode.left){
+                    list.add(currentNode.left);
+                }
+                if(null != currentNode.right){
+                    list.add(currentNode.right);
+                }
+            }
+        }
+    }
 
     /****************** 非递归实现 ********************/
 
