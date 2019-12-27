@@ -7,8 +7,8 @@ import lombok.Data;
 @AllArgsConstructor
 public class ListNode extends MistObject {
 
-    private int val;
-    private ListNode next;
+    public int val;
+    public ListNode next;
 
     public ListNode(int x) { val = x; }
 
