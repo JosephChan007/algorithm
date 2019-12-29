@@ -158,22 +158,24 @@ public class LinkMath {
      * 探测链表是否有环，有环时，返回环的起始点，否则返回null
      */
     public ListNode detectCycle(ListNode head) {
-        if(head == null || head.getNext() == null) return null;
-        ListNode spoint = head;
-        ListNode dpoint = head;
-        while(true) {
-            if(dpoint == null || dpoint.getNext() == null || dpoint.getNext().getNext() == null) return null;
-            spoint = spoint.getNext();
-            dpoint = dpoint.getNext().getNext();
-            if(spoint == dpoint) {
+        if(null == head || null == head.next) return head;
+
+        ListNode slowNode = head;
+        ListNode fastNode = head;
+
+        while (true) {
+            if(null == fastNode || null == fastNode.next || null == fastNode.next.next) return null;
+
+            slowNode = slowNode.next;
+            fastNode = fastNode.next.next;
+
+            if (slowNode == fastNode) {
                 ListNode tmp = head;
-                if(head == dpoint) return dpoint;
-                while(true) {
-                    dpoint = dpoint.getNext();
-                    tmp = tmp.getNext();
-                    if(dpoint == tmp) {
-                        return dpoint;
-                    }
+                if(fastNode == head) return fastNode;
+                while (true) {
+                    tmp = tmp.next;
+                    fastNode = fastNode.next;
+                    if(tmp == fastNode) return fastNode;
                 }
             }
         }
