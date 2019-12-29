@@ -9,6 +9,11 @@ import java.util.stream.Collectors;
 
 public class BinaryTree<T> {
 
+    /**
+     * 创建AVL二叉树
+     * @param list
+     * @return
+     */
     public TreeNode createTree(List<Integer> list) {
         List<TreeNode> nodeList = list.stream().map(TreeNode::new).collect(Collectors.toList());
         TreeNode root = nodeList.get(0);
@@ -21,8 +26,21 @@ public class BinaryTree<T> {
         return root;
     }
 
+    /**
+     * 二叉树的最近公共祖先
+     */
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if(root == null || p == root || q == root) return root;
 
-    /****************** 递归实现 ********************/
+        TreeNode left = lowestCommonAncestor(root.getLeft(), p, q);
+        TreeNode right = lowestCommonAncestor(root.getRight(), p, q);
+
+        if(left != null && right != null) return root;
+        return left == null ? right : left;
+    }
+
+
+    /****************** 遍历-递归实现 ********************/
 
     /**
      * 前序遍历
@@ -75,7 +93,7 @@ public class BinaryTree<T> {
 
 
 
-    /****************** 非递归实现 ********************/
+    /****************** 遍历-非递归实现 ********************/
 
     /**
      * 前序遍历
@@ -147,5 +165,6 @@ public class BinaryTree<T> {
             }
         }
     }
+
 
 }
