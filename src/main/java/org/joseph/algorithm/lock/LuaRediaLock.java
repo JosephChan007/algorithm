@@ -14,17 +14,13 @@ public class LuaRediaLock {
     /**
      * 获取锁
      *
-     * @param lockKey          锁的key
-     * @param lockVal          锁的val，可以利用来实现"避免误删别人锁"、"锁的重入"等功能
-     * @param lockMaxLifeTime  锁的最大生命时长，到期自动销毁，单位：毫秒
-     * @param tryWaitingTime   等待获取锁的超时时间，单位：毫秒
+     * @param lockKey   锁的key
+     * @param lockVal   锁的val，可以利用来实现"避免误删别人锁"、"锁的重入"等功能
+     * @param lockTime  锁的最大生命时长，到期自动销毁，单位：毫秒
+     * @param tryTime   等待获取锁的超时时间，单位：毫秒
      * @return
      */
-    public Boolean tryLock(String lockKey, String lockVal, int lockMaxLifeTime, int tryWaitingTime) {
-
-        //lua脚本，让逻辑简单清晰，同时保证原子性
-        //setNX：成功-1，失败-0
-        String lua = " if redis.call('set',KEYS[1],ARGV[1],'PX',ARGV[2],'NX') then return 1 else return 0 end ";
+    public Boolean tryLock(String lockKey, String lockVal, int lockTime, int tryTime) {
 
         //获取锁的开始时间
         Long tryBeginTime = System.currentTimeMillis();
@@ -32,11 +28,13 @@ public class LuaRediaLock {
         //轮询
         while (true) {
 
-            Long result = null;
+            String result = null;
             Jedis jedis = null;
             try {
                 jedis = jedisPool.getResource();
-                result = (Long) jedis.eval(lua, Arrays.asList(lockKey), Arrays.asList(lockVal, String.valueOf(lockMaxLifeTime)));
+
+                // 原子性操作
+                result = jedis.set(lockKey, lockVal, "NX", "PX", lockTime);
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
@@ -49,14 +47,14 @@ public class LuaRediaLock {
             }
 
             //获取锁成功
-            if (Long.valueOf(1).equals(result)) {
+            if ("ok".equals(result)) {
                 return true;
             }
 
             //当前时间
             Long now = System.currentTimeMillis();
             //获取等待超时，就不用获取了
-            if (now - tryBeginTime >= tryWaitingTime) {
+            if (now - tryBeginTime >= tryTime) {
                 return false;
             }
 
@@ -64,6 +62,7 @@ public class LuaRediaLock {
                 //阻塞等一会儿再重新去获取
                 TimeUnit.MILLISECONDS.sleep(50);
             } catch (InterruptedException e) {
+
             }
 
         }
