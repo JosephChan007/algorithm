@@ -12,7 +12,7 @@ public class ABC {
         new Thread(() -> {
             while (true) {
                 lock.lock();
-                if (status % 4 == 0) {
+                if (status % 3 == 0) {
                     System.out.printf("A");
                     status++;
                 }
@@ -23,7 +23,7 @@ public class ABC {
         new Thread(() -> {
             while (true) {
                 lock.lock();
-                if (status % 4 == 1) {
+                if (status % 3 == 1) {
                     System.out.printf("B");
                     status++;
                 }
@@ -34,19 +34,8 @@ public class ABC {
         new Thread(() -> {
             while (true) {
                 lock.lock();
-                if (status % 4 == 2) {
+                if (status % 3 == 2) {
                     System.out.printf("C");
-                    status++;
-                }
-                lock.unlock();
-            }
-        }).start();
-
-        new Thread(() -> {
-            while (true) {
-                lock.lock();
-                if (status % 4 == 3) {
-                    System.out.printf("D");
                     status++;
                 }
                 lock.unlock();
