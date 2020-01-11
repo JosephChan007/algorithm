@@ -46,7 +46,7 @@ public class BinaryTree<T> {
      * 前序遍历
      */
     private void preOrder(TreeNode node) {
-        if(null != node) System.out.println(node.getVal());
+        if(null != node) System.out.println(node.val);
         if(null != node.left) preOrder(node.left);
         if(null != node.right) preOrder(node.right);
     }
@@ -56,7 +56,7 @@ public class BinaryTree<T> {
      */
     private void inOrder(TreeNode node) {
         if(null != node.left) inOrder(node.left);
-        if(null != node) System.out.println(node.getVal());
+        if(null != node) System.out.println(node.val);
         if(null != node.right) inOrder(node.right);
     }
 
@@ -66,18 +66,18 @@ public class BinaryTree<T> {
     private void postOrder(TreeNode node) {
         if(null != node.left) postOrder(node.left);
         if(null != node.right) postOrder(node.right);
-        if(null != node) System.out.println(node.getVal());
+        if(null != node) System.out.println(node.val);
     }
 
 
     /**
      * 层序遍历
      */
-    public void levelorder(TreeNode node){
-        if(null != node){
+    public void levelorder(TreeNode root){
+        if(null != root){
             LinkedList<TreeNode> list = new LinkedList<TreeNode>();
-            list.add(node);
-            TreeNode currentNode;
+            list.add(root);
+            TreeNode currentNode = null;
             while (!list.isEmpty()){
                 currentNode = list.poll();
                 System.out.print(currentNode.val);
