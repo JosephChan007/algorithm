@@ -1,5 +1,7 @@
 package org.joseph.algorithm.array;
 
+import java.util.Arrays;
+
 public class Rotate {
 
     /**
@@ -16,4 +18,23 @@ public class Rotate {
         }
     }
 
+    public static void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+
+    public static void rotate1(int[] nums) {
+        int mid = nums.length / 2 - 1;
+        for (int i = 0; i <= mid; i++) {
+            int end = nums.length - 1 - i;
+            swap(nums, i, end);
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {1, 2, 3, 4, 5, 6, 7};
+        Rotate.rotate1(nums);
+        System.out.println(Arrays.toString(nums));
+    }
 }
