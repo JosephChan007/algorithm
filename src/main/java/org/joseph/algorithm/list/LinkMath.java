@@ -96,10 +96,10 @@ public class LinkMath {
      * 反转链表（递归法）
      */
     private ListNode reverse(ListNode head) {
-        if(head == null || head.getNext() == null) return head;
-        ListNode newHead = reverse(head.getNext());
-        head.getNext().setNext(head);
-        head.setNext(null);
+        if(head == null || head.next == null) return head;
+        ListNode newHead = reverse(head.next);
+        head.next.next = head;
+        head.next = null;
         return newHead;
     }
 
@@ -111,19 +111,19 @@ public class LinkMath {
         if(head == null) return head;
 
         ListNode preNode = head;
-        ListNode currNode = head.getNext();
+        ListNode currNode = head.next;
         ListNode tmpNode;
 
         while(true) {
             if(currNode == null) break;
-            tmpNode = currNode.getNext();
-            currNode.setNext(preNode);
+            tmpNode = currNode.next;
+            currNode.next = preNode;
 
             preNode = currNode;
             currNode = tmpNode;
         }
 
-        head.setNext(null);
+        head.next = null;
         return preNode;
     }
 

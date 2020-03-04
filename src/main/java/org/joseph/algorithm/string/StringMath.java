@@ -1,5 +1,6 @@
 package org.joseph.algorithm.string;
 
+import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -31,11 +32,9 @@ public class StringMath {
      * 计算字符串中子串的长度为len的个数
      */
     public Integer toSubArrayCount(String str, Integer len) {
-        String binaryTxt = Stream.of(str.split("")).map(i -> i = "1").collect(Collectors.joining());
-        Long count = IntStream.range(1, Integer.valueOf(binaryTxt, 2)).boxed()
-                .map(Integer::bitCount).filter(i -> i.equals(len)).count();
+        String bin = Stream.of(str.split("")).map(i -> i = "1").collect(Collectors.joining());
+        Long count = IntStream.range(1, Integer.valueOf(bin, 2)).map(Integer::bitCount).filter(i -> i == len).count();
         return count.intValue();
     }
-
 
 }

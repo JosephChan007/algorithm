@@ -7,7 +7,7 @@ public class ABC1 {
     private static ReentrantLock lock = new ReentrantLock();
     private static Integer count = 0;
 
-    private static void print(String out, Integer status, Integer val) {
+    private void print(String out, Integer status, Integer val) {
         while (true) {
             lock.lock();
             if (count % status == val) {
@@ -19,16 +19,17 @@ public class ABC1 {
     }
 
     public static void main(String[] args) {
+        ABC1 abc1 = new ABC1();
         new Thread(() -> {
-            print("A", 3, 0);
+            abc1.print("A", 3, 0);
         }).start();
 
         new Thread(() -> {
-            print("B", 3, 1);
+            abc1.print("B", 3, 1);
         }).start();
 
         new Thread(() -> {
-            print("C", 3, 2);
+            abc1.print("C", 3, 2);
         }).start();
     }
 
