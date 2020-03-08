@@ -28,18 +28,49 @@ public class Reverse {
 
         ListNode curNode = head.next;
         ListNode preNode = head;
-        ListNode tmpNode = null;
+        ListNode nxtNode = null;
 
         while (true) {
             if(null == curNode) break;
 
-            tmpNode = curNode.next;
+            nxtNode = curNode.next;
             curNode.next = preNode;
             preNode = curNode;
-            curNode = tmpNode;
+            curNode = nxtNode;
         }
         head.next = null;
         return preNode;
+    }
+
+    public ListNode reverseRange(ListNode start, ListNode end) {
+        if(null == start || null == end || start == end) return start;
+
+        ListNode curNode = start.next;
+        ListNode preNode = start;
+        ListNode nxtNode = null;
+
+        while (curNode != end) {
+            nxtNode = curNode.next;
+            curNode.next = preNode;
+            preNode = curNode;
+            curNode = nxtNode;
+        }
+        return preNode;
+    }
+
+    public ListNode reverseGroup(ListNode head, int k) {
+        if(head == null) return null;
+
+        ListNode a = head, b = head;
+
+        for (int i = 0; i < k; i++) {
+            if(null == b) return head;
+            b = b.next;
+        }
+
+        ListNode newHead = reverseRange(a, b);
+        a.next = reverseGroup(b, k);
+        return newHead;
     }
 
 }
