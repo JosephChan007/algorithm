@@ -1,7 +1,5 @@
 package org.joseph.algorithm.number;
 
-import sun.print.SunMinMaxPage;
-
 import java.util.Arrays;
 
 public class SuNumer {
