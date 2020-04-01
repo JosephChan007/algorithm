@@ -33,12 +33,15 @@ public class NumberMath {
         });
 
         System.out.println(Arrays.toString(nums));
-        if(nums[0] == 0) return "0";
 
         String sss = Arrays.stream(nums).map(String::valueOf).collect(Collectors.joining());
         return sss;
     }
-    
 
+    public static void main(String[] args) {
+        Integer[] nums = {0,3,4,9,1,91};
+        String s = new NumberMath().maxNumberStr(nums);
+        System.out.println(s);
+    }
 
 }
