@@ -7,8 +7,8 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class ProducerConsumer {
 
-    private static ReentrantLock lock = new ReentrantLock();
-    private static LinkedList<Integer> queue = new LinkedList<>();
+    private ReentrantLock lock = new ReentrantLock();
+    private LinkedList<Integer> queue = new LinkedList<>();
     private static int threshold = 100;
 
     public Integer get() {
@@ -16,12 +16,9 @@ public class ProducerConsumer {
         try {
             if(queue.size() == 0) return -1;
             return queue.poll();
-        } catch (Exception e) {
-            e.printStackTrace();
         } finally {
             lock.unlock();
         }
-        return -1;
     }
 
     public void put(Integer val) {
@@ -29,11 +26,13 @@ public class ProducerConsumer {
         try {
             if (queue.size() == threshold) return;
             queue.add(val);
-        } catch (Exception e) {
-            e.printStackTrace();
         } finally {
             lock.unlock();
         }
+    }
+
+    public LinkedList<Integer> getQueue() {
+        return queue;
     }
 
     public static void main(String[] args) {
@@ -68,7 +67,7 @@ public class ProducerConsumer {
 
         new Thread(() -> {
             while (true) {
-                System.out.println("size: " + queue.size());
+                System.out.println("size: " + instance.getQueue().size());
                 try {
                     TimeUnit.MILLISECONDS.sleep(500);
                 } catch (InterruptedException e) {
