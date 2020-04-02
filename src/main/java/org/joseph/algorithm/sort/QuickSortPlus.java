@@ -1,6 +1,5 @@
 package org.joseph.algorithm.sort;
 
-
 import java.util.Arrays;
 import java.util.Random;
 
@@ -28,14 +27,14 @@ public class QuickSortPlus {
         System.out.println(baseIdx);
 
         while (left < right) {
-            if (left < right && nums[right] <= base) {
+            if (left < right && nums[right] >= base) {
                 right--;
             }
             swap(nums, right, baseIdx);
             baseIdx = right;
 
 
-            if (left < right && nums[left] >= base) {
+            if (left < right && nums[left] <= base) {
                 left++;
             }
             swap(nums, left, baseIdx);
@@ -54,9 +53,7 @@ public class QuickSortPlus {
     }
 
     public void solution(int[] nums) {
-        int begin = 0;
-        int end = nums.length - 1;
-        sort(nums, begin, end);
+        sort(nums, 0, nums.length - 1);
     }
 
     public static void main(String[] args) {
