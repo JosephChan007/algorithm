@@ -1,8 +1,6 @@
 package org.joseph.algorithm.string;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 
 /**
@@ -12,17 +10,17 @@ public class FullPermutation {
 
     public Set<String> result = new HashSet<>();
 
-    public void swap(char[] array, int i, int j) {
-        char temp = array[i];
+    public void swap(String[] array, int i, int j) {
+        String temp = array[i];
         array[i] = array[j];
         array[j] = temp;
     }
 
-    public void doPermutation(char[] array, int start, int end) {
+    public void doPermutation(String[] array, int start, int end) {
         if(start > end) return;
 
         if (start == end) {
-            result.add(Arrays.toString(array));
+            result.add(String.join("", array));
         } else {
             for (int i = start; i <= end; i++) {
                 swap(array, i, start);
@@ -32,13 +30,13 @@ public class FullPermutation {
         }
     }
 
-    public void solution(char[] array) {
+    public void solution(String[] array) {
         doPermutation(array, 0, array.length - 1);
     }
 
 
     public static void main(String[] args) {
-        char[] array = {'a', 'b', 'a', 'c', 'd'};
+        String[] array = "abacd".split("");
         FullPermutation per = new FullPermutation();
         per.solution(array);
         per.result.stream().forEach(System.out::println);
