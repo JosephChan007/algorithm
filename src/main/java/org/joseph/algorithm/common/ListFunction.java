@@ -1,4 +1,4 @@
-package org.joseph.algorithm.list;
+package org.joseph.algorithm.common;
 
 import org.joseph.algorithm.common.ListNode;
 

@@ -1,5 +1,6 @@
 package org.joseph.algorithm.list;
 
+import org.joseph.algorithm.common.ListFunction;
 import org.joseph.algorithm.common.ListNode;
 
 public class LinkMath {
