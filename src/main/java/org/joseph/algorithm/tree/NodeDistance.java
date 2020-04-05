@@ -43,7 +43,7 @@ public class NodeDistance {
 
         maxDistance = Integer.max(root.leftLen + root.rightLen, maxDistance);
 
-        return root.rightLen > root.leftLen ? root.rightLen : root.leftLen;
+        return Integer.max(root.leftLen, root.rightLen);
     }
 
     /**
