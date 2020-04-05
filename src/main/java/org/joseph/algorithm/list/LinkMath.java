@@ -5,14 +5,15 @@ import org.joseph.algorithm.common.ListNode;
 public class LinkMath {
 
     /**
-     * 将节点newNode查入到已拍好序的列表head中
+     * 按逆序将节点node查入到有序的链表中
      */
-    public ListNode insert(ListNode head, ListNode newNode) {
-        if(head == null) return head;
-        if(head.getVal() >= newNode.getVal()) {
-            newNode.setNext(head);
-            return newNode;
+    public ListNode insert(ListNode head, ListNode node) {
+        if(head == null) return node;
+        if(head.getVal() >= node.getVal()) {
+            node.setNext(head);
+            return node;
         } else {
+            /*
             ListNode cursor = head;
             ListNode preCursor = head;
             while(true) {
@@ -27,27 +28,36 @@ public class LinkMath {
             newNode.setNext(cursor);
             preCursor.setNext(newNode);
             return head;
+            */
+
+            ListNode cursor = head;
+            while (null != cursor.next && cursor.val > node.val) {
+                cursor = cursor.next;
+            }
+            node.next = cursor.next;
+            cursor.next = node;
+            return head;
         }
     }
 
     /**
-     * 排序链表：插入排序
+     * 链表插入排序： 遍历列表，并将所有元素按序插入到一个新链表中
      */
     public ListNode sortList(ListNode head) {
         if(head == null) return null;
-        if(head.getNext() == null) return head;
+        if(head.next == null) return head;
 
-        ListNode newHead = new ListNode(head.getVal());
-        ListNode cursor = head.getNext();
+        ListNode newHead = new ListNode(head.val);
+        ListNode cursor = head.next;
         while(cursor != null) {
-            newHead = insert(newHead, new ListNode(cursor.getVal()));
-            cursor = cursor.getNext();
+            newHead = insert(newHead, new ListNode(cursor.val));
+            cursor = cursor.next;
         }
         return newHead;
     }
 
     /**
-     * 合并两个链表
+     * 合并两个已排好序的链表
      */
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         if(l1 == null && l2 == null) return null;
