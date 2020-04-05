@@ -5,33 +5,16 @@ import org.joseph.algorithm.common.ListNode;
 public class LinkMath {
 
     /**
-     * 按逆序将节点node查入到有序的链表中
+     * 按序将节点node查入到有序的链表中
      */
     public ListNode insert(ListNode head, ListNode node) {
         if(head == null) return node;
-        if(head.getVal() >= node.getVal()) {
-            node.setNext(head);
+        if(node.val <= head.val) {
+            node.next = head;
             return node;
         } else {
-            /*
             ListNode cursor = head;
-            ListNode preCursor = head;
-            while(true) {
-                if(cursor == null) break;
-                if(cursor.getVal() < newNode.getVal()) {
-                    preCursor = cursor;
-                    cursor = cursor.getNext();
-                } else {
-                    break;
-                }
-            }
-            newNode.setNext(cursor);
-            preCursor.setNext(newNode);
-            return head;
-            */
-
-            ListNode cursor = head;
-            while (null != cursor.next && cursor.val > node.val) {
+            while (null != cursor.next && node.val >= cursor.next.val) {
                 cursor = cursor.next;
             }
             node.next = cursor.next;
@@ -67,8 +50,8 @@ public class LinkMath {
         ListNode newHead = l1;
         ListNode cursor = l2;
         while(cursor != null) {
-            newHead = insert(newHead, new ListNode(cursor.getVal()));
-            cursor = cursor.getNext();
+            newHead = insert(newHead, new ListNode(cursor.val));
+            cursor = cursor.next;
         }
         return newHead;
     }
@@ -238,6 +221,20 @@ public class LinkMath {
             }
         }
         return null;
+    }
+
+
+    public static void main(String[] args) {
+        int[] nums1 = {2,1,3};
+        int[] nums2 = {2,6,0,4,2};
+        ListNode head1 = ListFunction.createList(nums1);
+        ListNode head2 = ListFunction.createList(nums2);
+
+        LinkMath linkMath = new LinkMath();
+        ListNode sortList = linkMath.sortList(head1);
+        ListNode listNode = linkMath.mergeTwoLists(sortList, head2);
+        ListFunction.printList(listNode);
+
     }
 
 }

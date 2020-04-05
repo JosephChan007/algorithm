@@ -4,29 +4,46 @@ import org.joseph.algorithm.common.ListNode;
 
 public class NumListAdd {
 
-    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        ListNode dummyHead = new ListNode(0);  // 该结点冗余，第二个结点才是链表的头结点
+    /**
+     * 将两个链表里的数字按照次序相加
+     */
+    public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode head = null, currNode = null;
         int increment = 0;
-        ListNode currNode = dummyHead;
 
-        for (ListNode n1 = l1, n2 = l2; l1 != null || l2 != null;){
-            int x = l1 != null ? l1.val : 0;
-            int y = l2 != null ? l2.val : 0;
+        ListNode n1 = l1, n2 = l2;
+        while (null != n1 || null != n2) {
+            int v1 = null != n1 ? n1.val : 0;
+            int v2 = null != n2 ? n2.val : 0;
 
-            int result = x + y + increment;
-            currNode.next = new ListNode(result % 10);
-            increment = result / 10;
-            currNode = currNode.next;
+            int res = v1 + v2 + increment;
+            increment = res / 10;
 
-            if (l1 != null) l1 = l1.next;
-            if (l2 != null) l2 = l2.next;
+            if (n1 == l1 && n2 == l2) {     // 链表头
+                head = new ListNode(res % 10);
+                currNode = head;
+            } else {
+                currNode.next = new ListNode(res % 10);
+                currNode = currNode.next;
+            }
+            if(null != n1) n1 = n1.next;
+            if(null != n2) n2 = n2.next;
         }
 
         if (increment == 1){
             currNode.next = new ListNode(1);
         }
 
-        return dummyHead.next;  // 第一个结点是冗余结点
+        return head;  // 第一个结点是冗余结点
+    }
+
+    public static void main(String[] args) {
+        int[] nums1 = {1,5,5,7};
+        int[] nums2 = {2,6,0,4,2};
+        ListNode head1 = ListFunction.createList(nums1);
+        ListNode head2 = ListFunction.createList(nums2);
+        ListNode listNode = NumListAdd.addTwoNumbers(head1, head2);
+        ListFunction.printList(listNode);
     }
 
 }
