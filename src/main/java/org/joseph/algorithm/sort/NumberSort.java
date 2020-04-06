@@ -3,6 +3,10 @@ package org.joseph.algorithm.sort;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+
+/**
+ *
+ */
 public class NumberSort {
 
     /**
@@ -44,7 +48,6 @@ public class NumberSort {
     /**
      * 选择排序
      * 最佳情况：T(n) = O(n2)  最差情况：T(n) = O(n2)  平均情况：T(n) = O(n2)
-     *
      *
      * 算法描述：
      *  n个记录的直接选择排序可经过n-1趟直接选择排序得到有序结果。具体算法描述如下：
