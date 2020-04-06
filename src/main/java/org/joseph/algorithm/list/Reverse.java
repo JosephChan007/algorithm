@@ -9,7 +9,7 @@ import org.joseph.algorithm.common.ListNode;
 public class Reverse {
 
     /**
-     * 递归方案
+     * 链表反转-递归方案
      */
     public ListNode solution(ListNode head) {
         if (null == head || null == head.next) return head;
@@ -21,7 +21,7 @@ public class Reverse {
     }
 
     /**
-     * 迭代方案
+     * 链表反转-迭代方案
      */
     public ListNode solution1(ListNode head) {
         if (null == head || null == head.next) return head;
@@ -42,6 +42,9 @@ public class Reverse {
         return preNode;
     }
 
+    /**
+     * 链表反转-反转start开始end结束部分的链表
+     */
     public ListNode reverseRange(ListNode start, ListNode end) {
         if(null == start || null == end || start == end) return start;
 
@@ -58,6 +61,9 @@ public class Reverse {
         return preNode;
     }
 
+    /**
+     * 链表反转-每次k个节点一组，旋转整个链表
+     */
     public ListNode reverseGroup(ListNode head, int k) {
         if(head == null) return null;
 

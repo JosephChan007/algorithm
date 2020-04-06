@@ -38,10 +38,30 @@ public class NumberMath {
         return sss;
     }
 
+    /**
+     * 对已排序的数字数字，将数组中数字去重
+     */
+    public int[] removeDuplicate(int[] nums) {
+        int slow = 0, fast = 0;
+        while (fast < nums.length) {
+            if (nums[slow] != nums[fast]) {
+                slow++;
+                nums[slow] = nums[fast];
+            }
+            fast++;
+        }
+        int[] result = new int[slow + 1];
+        for (int i = 0; i <= slow; i++) {
+            result[i] = nums[i];
+        }
+        return result;
+    }
+
+
     public static void main(String[] args) {
-        Integer[] nums = {0,3,4,9,1,91};
-        String s = new NumberMath().maxNumberStr(nums);
-        System.out.println(s);
+        int[] nums = {0, 3, 3, 9, 9, 91};
+        int[] s = new NumberMath().removeDuplicate(nums);
+        System.out.println(Arrays.toString(s));
     }
 
 }
