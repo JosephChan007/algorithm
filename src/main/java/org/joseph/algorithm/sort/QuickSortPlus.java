@@ -21,27 +21,27 @@ public class QuickSortPlus {
          * 划分基数是随机数，可以减少划片次数
          */
         Random random = new Random();
-        int baseIdx = random.nextInt(right) % (right - left + 1) + left;
-        int base = nums[baseIdx];
+        int index = random.nextInt(right) % (right - left + 1) + left;
+        int base = nums[index];
 
-        System.out.println(baseIdx);
+        System.out.println(index);
 
         while (left < right) {
             if (left < right && nums[right] >= base) {
                 right--;
             }
-            swap(nums, right, baseIdx);
-            baseIdx = right;
+            swap(nums, right, index);
+            index = right;
 
 
             if (left < right && nums[left] <= base) {
                 left++;
             }
-            swap(nums, left, baseIdx);
-            baseIdx = left;
+            swap(nums, left, index);
+            index = left;
         }
 
-        return baseIdx;
+        return index;
     }
 
     public void sort(int[] nums, int left, int right) {
