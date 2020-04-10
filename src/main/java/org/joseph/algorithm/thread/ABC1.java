@@ -31,6 +31,22 @@ public class ABC1 {
         new Thread(() -> {
             abc1.print("C", 3, 2);
         }).start();
+
+
+        /* 非常具有迷惑性的多线程非常规写法
+
+        new Thread(() -> {
+            System.out.println("aaa");
+        }) {
+            @Override
+            public void run() {
+                System.out.println("bbb");
+            }
+        }.start();
+
+        */
+
+
     }
 
 }
