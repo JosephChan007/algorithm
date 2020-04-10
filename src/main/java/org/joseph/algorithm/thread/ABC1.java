@@ -33,7 +33,7 @@ public class ABC1 {
         }).start();
 
 
-        /* 非常具有迷惑性的多线程非常规写法
+        /* 非常具有迷惑性的多线程非常规写法，打印结果：bbb
 
         new Thread(() -> {
             System.out.println("aaa");
