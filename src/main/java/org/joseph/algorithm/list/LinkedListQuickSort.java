@@ -6,7 +6,7 @@ import java.util.LinkedList;
 /**
  * 链表快排序
  */
-public class QuickSort {
+public class LinkedListQuickSort {
 
     public void swap(LinkedList<Integer> list, int i, int j) {
         Integer temp = list.get(i);
