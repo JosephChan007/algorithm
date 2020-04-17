@@ -2,7 +2,7 @@ package org.joseph.algorithm.list;
 
 public class QuickSortForSingleList {
 
-    static class Node {
+    class Node {
         int val;
         Node next;
 
@@ -11,13 +11,16 @@ public class QuickSortForSingleList {
         }
     }
 
-    private static void swap(Node node1, Node node2) {
+    private void swap(Node node1, Node node2) {
         int temp = node1.val;
         node1.val = node2.val;
         node2.val = temp;
     }
 
-    private static Node partition(Node start, Node end) {
+    /**
+     * 取链表分区节点
+     */
+    private Node partition(Node start, Node end) {
         int baseVal = start.val;
         Node base = start;
         Node cur = start.next;
@@ -35,7 +38,10 @@ public class QuickSortForSingleList {
         return base;
     }
 
-    private static void sort(Node start, Node end) {
+    /**
+     * 算法核心
+     */
+    private void sort(Node start, Node end) {
         if (start != end && start.next != end) {
             Node p = partition(start, end);
             sort(start, p);
@@ -43,7 +49,10 @@ public class QuickSortForSingleList {
         }
     }
 
-    public static void solution(Node head) {
+    /**
+     * 链表快排序
+     */
+    public void solution(Node head) {
         if (head == null || head.next == null) {
             return;
         }

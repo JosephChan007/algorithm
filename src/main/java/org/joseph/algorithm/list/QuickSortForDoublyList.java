@@ -5,7 +5,7 @@ package org.joseph.algorithm.list;
  */
 public class QuickSortForDoublyList {
 
-    static class Node {
+    class Node {
         int value;
         Node pre;
         Node next;
@@ -18,7 +18,7 @@ public class QuickSortForDoublyList {
     /**
      * 得到链表的尾节点
      */
-    public static Node getTail(Node head) {
+    public Node getTail(Node head) {
         Node current = head;
         while (null != current.next) {
             current = current.next;
@@ -29,7 +29,7 @@ public class QuickSortForDoublyList {
     /**
      * 取分区节点
      */
-    public static Node partition(Node start, Node end) {
+    public Node partition(Node start, Node end) {
         int base = start.value;
         while (start != end) {
             while(start != end && base >= end.value) {
@@ -48,7 +48,7 @@ public class QuickSortForDoublyList {
     /**
      * 参数为头节点和尾节点
      */
-    public static void sort(Node head, Node tail) {
+    public void sort(Node head, Node tail) {
         if (head == null || tail == null || head == tail || head.next == tail) {
             return;
         }
@@ -63,7 +63,7 @@ public class QuickSortForDoublyList {
     /**
      * 快排序一个双向链表
      */
-    public static void solution(Node head) {
+    public void solution(Node head) {
         Node tail = getTail(head);
         sort(head, tail);
     }
