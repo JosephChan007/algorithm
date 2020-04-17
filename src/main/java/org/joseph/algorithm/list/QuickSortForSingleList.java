@@ -6,7 +6,7 @@ public class QuickSortForSingleList {
         int val;
         Node next;
 
-        public Node(int value) {
+        Node(int value) {
             this.val = value;
         }
     }
