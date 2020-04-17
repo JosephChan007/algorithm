@@ -4,9 +4,9 @@ import java.util.LinkedList;
 
 
 /**
- * 链表快排序
+ * 单链表快排序：链表是LinkedList结构
  */
-public class LinkedListQuickSort {
+public class QuickSortForLinkedList {
 
     public void swap(LinkedList<Integer> list, int i, int j) {
         Integer temp = list.get(i);
@@ -14,7 +14,10 @@ public class LinkedListQuickSort {
         list.set(j, temp);
     }
 
-    public int getIndex(LinkedList<Integer> list, int left, int right) {
+    /**
+     * 分区节点索引
+     */
+    public int partition(LinkedList<Integer> list, int left, int right) {
         int index = left;
         int base = list.get(left);
 
@@ -34,16 +37,22 @@ public class LinkedListQuickSort {
         return index;
     }
 
-    public void doSort(LinkedList<Integer> list, int start, int end) {
+    /**
+     * 快排核心算法
+     */
+    public void sort(LinkedList<Integer> list, int start, int end) {
         if (start < end) {
-            int index = getIndex(list, start, end);
-            doSort(list, start, index - 1);
-            doSort(list, index + 1, end);
+            int index = partition(list, start, end);
+            sort(list, start, index - 1);
+            sort(list, index + 1, end);
         }
     }
 
+    /**
+     * 链表快排算法
+     */
     public void solution(LinkedList<Integer> list) {
-        doSort(list, 0, list.size() - 1);
+        sort(list, 0, list.size() - 1);
     }
 
 

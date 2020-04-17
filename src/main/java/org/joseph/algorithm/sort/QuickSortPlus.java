@@ -15,7 +15,7 @@ public class QuickSortPlus {
         nums[j] = tmp;
     }
 
-    public int getIndex(int[] nums, int left, int right) {
+    public int partition(int[] nums, int left, int right) {
 
         /**
          * 划分基数是随机数，可以减少划片次数
@@ -46,7 +46,7 @@ public class QuickSortPlus {
 
     public void sort(int[] nums, int left, int right) {
         if (left < right) {
-            int index = getIndex(nums, left, right);
+            int index = partition(nums, left, right);
             sort(nums, left, index - 1);
             sort(nums, index + 1, right);
         }

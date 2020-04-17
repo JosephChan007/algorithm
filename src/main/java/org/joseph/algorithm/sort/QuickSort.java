@@ -13,7 +13,7 @@ public class QuickSort {
         array[j] = temp;
     }
 
-    public int getIndex(int[] array, int left, int right) {
+    public int partition(int[] array, int left, int right) {
         int index = left;
         int base = array[left];
 
@@ -36,7 +36,7 @@ public class QuickSort {
 
     public void doSort(int[] array, int start, int end) {
         if (start < end) {
-            int index = getIndex(array, start, end);
+            int index = partition(array, start, end);
             doSort(array, start, index - 1);
             doSort(array, index + 1, end);
         }
