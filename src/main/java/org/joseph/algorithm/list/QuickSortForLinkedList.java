@@ -22,13 +22,13 @@ public class QuickSortForLinkedList {
         int base = list.get(left);
 
         while (left < right) {
-            while (left < right && list.get(right) >= base) {
+            while (left < right && list.get(right) <= base) {
                 right--;
             }
             swap(list, index, right);
             index = right;
 
-            while (left < right && list.get(left) <= base) {
+            while (left < right && list.get(left) >= base) {
                 left++;
             }
             swap(list, index, left);

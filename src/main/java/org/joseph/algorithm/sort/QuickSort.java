@@ -18,13 +18,13 @@ public class QuickSort {
         int base = array[left];
 
         while (left < right) {
-            while (left < right && array[right] >= base) {
+            while (left < right && array[right] <= base) {
                 right--;
             }
             swap(array, index, right);
             index = right;
 
-            while (left < right && array[left] <= base) {
+            while (left < right && array[left] >= base) {
                 left++;
             }
             swap(array, index, left);

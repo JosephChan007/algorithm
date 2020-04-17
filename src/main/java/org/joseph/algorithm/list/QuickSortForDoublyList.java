@@ -32,11 +32,11 @@ public class QuickSortForDoublyList {
     public Node partition(Node start, Node end) {
         int base = start.value;
         while (start != end) {
-            while(start != end && base >= end.value) {
+            while(start != end && base <= end.value) {
                 end = end.pre;
             }
             start.value = end.value;
-            while(start != end && base <= start.value) {
+            while(start != end && base >= start.value) {
                 start = start.next;
             }
             end.value = start.value;
