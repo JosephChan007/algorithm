@@ -7,7 +7,7 @@ import redis.clients.jedis.JedisPool;
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
-public class LuaRediaLock {
+public class LuaRedisLock {
 
     private JedisPool jedisPool;
 
@@ -100,7 +100,7 @@ public class LuaRediaLock {
     public static void main(String[] args) {
         //连接池
         JedisPool jedisPool = new JedisPool(new GenericObjectPoolConfig(), "127.0.0.1", 6379, 2000, "test123");
-        LuaRediaLock simpleRedisLock = new LuaRediaLock();
+        LuaRedisLock simpleRedisLock = new LuaRedisLock();
         simpleRedisLock.jedisPool = jedisPool;
 
         //模拟10个并发
