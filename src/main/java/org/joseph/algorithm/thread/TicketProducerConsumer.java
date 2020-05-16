@@ -7,6 +7,12 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
+
+/**
+ * 1.两个线程，一个线程生产者，一个线程是消费者
+ * 2.生产者生产票，超过10张就休息，被消费了就继续生产。
+ * 3.消费者消费票，票没了之后就休息，有票了接着消费。
+ */
 public class TicketProducerConsumer {
 
     static class Ticket {
@@ -49,7 +55,7 @@ public class TicketProducerConsumer {
                     System.out.println("生成了一张票ID: " + id);
                     lock.unlock();
                     try {
-                        Thread.sleep(300);
+                        Thread.sleep(100);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -83,6 +89,11 @@ public class TicketProducerConsumer {
                     Ticket t = container.poll();
                     System.out.println("取到一张票ID: " + t.id);
                     lock.unlock();
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }
