@@ -27,14 +27,13 @@ public class QuickSortPlus {
         System.out.println(index);
 
         while (left < right) {
-            if (left < right && nums[right] <= base) {
+            if (left < right && base <= nums[right]) {
                 right--;
             }
             swap(nums, right, index);
             index = right;
 
-
-            if (left < right && nums[left] >= base) {
+            if (left < right && base >= nums[left]) {
                 left++;
             }
             swap(nums, left, index);
