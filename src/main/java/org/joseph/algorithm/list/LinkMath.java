@@ -110,9 +110,9 @@ public class LinkMath {
 
         while(true) {
             if(currNode == null) break;
+
             tmpNode = currNode.next;
             currNode.next = preNode;
-
             preNode = currNode;
             currNode = tmpNode;
         }

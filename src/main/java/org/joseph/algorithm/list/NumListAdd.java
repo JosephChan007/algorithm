@@ -14,8 +14,8 @@ public class NumListAdd {
 
         ListNode n1 = l1, n2 = l2;
         while (null != n1 || null != n2) {
-            int v1 = null != n1 ? n1.val : 0;
-            int v2 = null != n2 ? n2.val : 0;
+            int v1 = (null != n1) ? n1.val : 0;
+            int v2 = (null != n2) ? n2.val : 0;
 
             int res = v1 + v2 + increment;
             increment = res / 10;

@@ -68,10 +68,8 @@ public class SlideWinMaxVal {
                 this.head = node;
                 this.tail = node;
                 this.count++;
-                return -1;
             } else if (this.count < this.size) {
                 this.addToTail(node);
-                return -1;
             }
             return -1;
         }
